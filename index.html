@@ -18,7 +18,14 @@
         <p>Isi data di bawah sesuai dengan identitas diri anda dan lowongan yang akan anda pilih</p>
       </div>
       <form action="" method="post">
-        <input type="text" name="" id="">
+        <div class="input-group">
+          <label for="fullName" class="input-label">Fullname<sup>*</sup></label>
+          <input type="text" name="fullName" id="fullName" class="input-control" placeholder="Masukkan Nama">
+        </div>
+        <br>
+        <div class="btn-group">
+          <button class="btn">Kirim</button>
+        </div>
       </form>
     </div>
   </main>
@@ -58,6 +65,28 @@
   }
   p {
     font-size: small;
+  }
+  div.input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-label {
+    margin-bottom: 10px;
+  }
+  .input-label sup {
+    color: red;
+  }
+  .input-control {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid gray;
+  }
+  div.btn-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .btn-group .btn {
+    padding: 5px;
   }
 </style>
 </html>
