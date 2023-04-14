@@ -12,7 +12,7 @@
   </div>
   <main>
     <div id="formRegis">
-      <img src="./logomark-sign.png" alt="" srcset="" height="50px">
+      <img src="./logomark-sign.png" alt="" srcset="" height="30px">
       <div style="margin-top: 0px;">
         <p class="h3">Form Registrasi</p>
         <p>Isi data di bawah sesuai dengan identitas diri anda dan lowongan yang akan anda pilih</p>
@@ -22,7 +22,37 @@
           <label for="fullName" class="input-label">Fullname<sup>*</sup></label>
           <input type="text" name="fullName" id="fullName" class="input-control" placeholder="Masukkan Nama">
         </div>
-        <br>
+        
+        <div class="input-group">
+          <label for="email" class="input-label">Email<sup>*</sup></label>
+          <input type="text" name="email" id="email" class="input-control" placeholder="Masukkan Email">
+        </div>
+        
+        <div class="input-group">
+          <label for="noTelp" class="input-label">Nomor Telepon<sup>*</sup></label>
+          <input type="text" name="noTelp" id="noTelp" class="input-control" placeholder="Masukkan Nomor Telepon">
+        </div>
+        
+        <div class="input-group">
+          <label for="lowongan" class="input-label">Lowongan<sup>*</sup></label>
+          <select name="lowongan" id="lowongan" class="input-control">
+            <option selected>- Pilih Lowongan -</option>
+            <option value="database_dev">DATABASE DEVELOPER</option>
+          </select>
+
+          <!-- <input type="text" name="lowongan" id="lowongan" class="input-control" placeholder="Masukkan Nama"> -->
+        </div>
+        
+        <div class="input-group">
+          <label for="posisi" class="input-label">Posisi<sup>*</sup></label>
+          <select name="posisi" id="posisi" class="input-control">
+            <option selected>- Pilih Posisi -</option>
+            <option value="1">Contoh Posisi #1</option>
+            <option value="2">Contoh Posisi #2</option>
+            <option value="3">Contoh Posisi #3</option>
+          </select>
+        </div>
+
         <div class="btn-group">
           <button class="btn">Kirim</button>
         </div>
@@ -59,34 +89,42 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   }
   .h3 {
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bolder;
     margin-bottom: -10px;
   }
   p {
-    font-size: small;
+    font-size: smaller;
   }
   div.input-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
   }
   .input-label {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
+    font-size: smaller;
   }
   .input-label sup {
     color: red;
   }
   .input-control {
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 7px 10px 7px;
+    font-size: smaller;
     border: 1px solid gray;
   }
   div.btn-group {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
   }
   .btn-group .btn {
-    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0px;
+    border: 0px solid transparent;
+    padding: 7px;
   }
 </style>
 </html>
