@@ -4,20 +4,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./assets/fontawesome-free-6.4.0-web/css/all.min.css">
   <title>Recruitment Form</title>
 </head>
 <body>
   <div id="navbar">
-    <img src="./nw-horizontal.png" alt="logo" style="background-repeat: no-repeat; max-height: 25px;">
+    <img src="./assets/nw-horizontal.png" alt="logo" style="background-repeat: no-repeat; max-height: 25px;">
   </div>
   <main>
     <div id="formRegis">
-      <img src="./logomark-sign.png" alt="" srcset="" height="30px">
+      <img src="./assets/logomark-sign.png" alt="" srcset="" height="30px">
       <div style="margin-top: 0px;">
         <p class="h3">Form Registrasi</p>
         <p>Isi data di bawah sesuai dengan identitas diri anda dan lowongan yang akan anda pilih</p>
       </div>
-      <form action="" method="post">
+      <form method="post">
         <div class="input-group">
           <label for="fullName" class="input-label">Fullname<sup>*</sup></label>
           <input type="text" name="fullName" id="fullName" class="input-control" placeholder="Masukkan Nama">
@@ -57,74 +59,19 @@
           <button class="btn">Kirim</button>
         </div>
       </form>
+      <div class="footer-container">
+        <div class="social-icon-box">
+          <div><a href="#"><i class="fa-brands fa-square-instagram"></i></a></div>
+          <div><a href="#"><i class="fa-brands fa-youtube"></i></a></div>
+          <div><a href="#"><i class="fa-brands fa-twitter"></i></a></div>
+          <div><a href="#"><i class="fa-brands fa-facebook"></i></a></div>
+        </div>
+        <div class="link-content">
+          <a href="http://www.neuronworks.co.id">www.neuronworks.co.id</a>
+        </div>
+      </div>
     </div>
   </main>
 </body>
 
-<style>
-  body {
-    background-image: url('./Starlid-illustration.svg');
-    background-repeat: no-repeat;
-    background-size: 75%;
-    overflow: hidden;
-    background-position-x: -25%;
-    font-family:  Arial, Helvetica, sans-serif;
-  }
-  #navbar {
-    margin-top: -10px;
-    margin-left: -10px;
-    width: 105%;
-    padding: 20px 0px 15px 25px;
-    background-color: white;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  #formRegis {
-    position: relative;
-    left: 55%;
-    margin-top: 5%;
-    padding: 25px;
-    background-color: white;
-    max-height: 70%;
-    max-width: 36%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  .h3 {
-    font-size: x-large;
-    font-weight: bolder;
-    margin-bottom: -10px;
-  }
-  p {
-    font-size: smaller;
-  }
-  div.input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  .input-label {
-    margin-bottom: 7px;
-    font-size: smaller;
-  }
-  .input-label sup {
-    color: red;
-  }
-  .input-control {
-    border-radius: 5px;
-    padding: 10px 7px 10px 7px;
-    font-size: smaller;
-    border: 1px solid gray;
-  }
-  div.btn-group {
-    margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-  }
-  .btn-group .btn {
-    background-color: #007bff;
-    color: white;
-    border-radius: 0px;
-    border: 0px solid transparent;
-    padding: 7px;
-  }
-</style>
 </html>

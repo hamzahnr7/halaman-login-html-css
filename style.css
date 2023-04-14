@@ -1,0 +1,89 @@
+body {
+  background-image: url('./assets/Starlid-illustration.svg');
+  background-repeat: no-repeat;
+  background-size: 75%;
+  overflow: hidden;
+  background-position-x: -25%;
+  font-family:  Arial, Helvetica, sans-serif;
+}
+#navbar {
+  margin-top: -10px;
+  margin-left: -10px;
+  width: 105%;
+  padding: 20px 0px 15px 25px;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+#formRegis {
+  position: relative;
+  left: 60%;
+  margin-top: 50px;
+  padding: 25px;
+  background-color: white;
+  max-height: 70%;
+  max-width: 32%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.h3 {
+  font-size: x-large;
+  font-weight: bolder;
+  margin-bottom: -10px;
+}
+p {
+  font-size: smaller;
+}
+div.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.input-label {
+  margin-bottom: 7px;
+  font-size: smaller;
+}
+.input-label sup {
+  color: red;
+}
+.input-control {
+  border-radius: 5px;
+  padding: 10px 7px 10px 7px;
+  font-size: smaller;
+  border: 1px solid gray;
+}
+div.btn-group {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.btn-group .btn {
+  background-color: #007bff;
+  color: white;
+  border-radius: 0px;
+  border: 0px solid transparent;
+  padding: 7px;
+}
+div a {
+  text-decoration: none;
+  color: #6d6d6d;
+}
+div.link-content{
+  text-align: center;  
+}
+.social-icon-box {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.social-icon-box div a i{
+  font-size: 50px;
+}
+.social-icon-box div a{
+  color: black;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+}
