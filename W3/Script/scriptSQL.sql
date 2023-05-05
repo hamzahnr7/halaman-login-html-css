@@ -8,3 +8,4 @@ explain select * from products p where p.productLine = 'Classic Cars'
 
 select * from orders o join orderdetails o2 on o.orderNumber = o2.orderNumber where o.orderNumber = 10101
 
+select p.productName, p.buyPrice, o2.priceEach  from orders o join orderdetails o2 on o.orderNumber = o2.orderNumber join products p on p.productCode = o2.productCode  where o.orderNumber = 10101
