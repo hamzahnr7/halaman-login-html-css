@@ -15,12 +15,12 @@ $value = array_merge(...$num);
 sort($value); $count = array(0, 0, 0);
 foreach ($value as $n) {
     for ($i=0; $i < 3; $i++) {
-        foreach ($num[$i] as $key) {            
+        foreach ($num[$i] as $key) {
             if ($n == $key) {
                 $count[$i]++;
                 echo $xyz[$i].', '.$n.', '.$abc[$i].', '.$count[$i]."<br>";
             }
-        } 
+        }
     }
 }
 // print_r($value);
