@@ -16,52 +16,79 @@
             </div>
             <hr>
             <div class="d-flex justify-content-center">
-                <form style="width: 50%;">
+                <form style="width: 50%;" id="myForm">
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Nama Lengkap</label>
-                        <input class="form-control form-control-sm" type="text" name="fullname" id="fullname">
+                        <input class="form-control form-control-sm" type="text" name="fullname" id="fullname" placeholder="Masukkan Nama Lengkap">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input class="form-control form-control-sm" type="text" name="email" id="email">
+                        <input class="form-control form-control-sm" type="email" name="email" id="email" placeholder="Masukkan Alamat Email">
                     </div>
                     <div class="mb-3">
                         <label for="phonenumber" class="form-label">Phone Number</label>
-                        <input class="form-control form-control-sm" type="text" name="phonenumber" id="phonenumber">
+                        <input class="form-control form-control-sm" type="text" name="phonenumber" id="phonenumber" placeholder="Masukkan Nomor Telepon">
                     </div>
                     <div class="mb-3">
                         <label for="job" class="form-label">Job Vacancy</label>
                         <select class="form-select form-select-sm" name="job" id="job"></select>
                     </div>
                     <div class="mb-3">
-                        <label for="potition" class="form-label">Potition</label>
-                        <select class="form-select form-select-sm" name="potition" id="potition"></select>
+                        <label for="potition" class="form-label">Position</label>
+                        <select class="form-select form-select-sm" name="position" id="position"></select>
+                    </div>
+                    <div class="d-grid gap-1">
+                        <button type="submit" class="btn btn- btn-success" onclick="submitForm()">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
         <hr>
-        <div></div>
+        <div id="afterSubmit"></div>
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 <script>
+    function submitForm() 
+    {
+        
+    }
+
     $(document).ready(function (param) 
     {
         $('title').text('Form Lowongan Pekerjaan');
-        $('#job').click(function() {
-            // var optionValue = prompt('Masukkan Nilai Opsi:');
-            // var optionText = prompt('Masukkan Teks Opsi:');
-            var optionText = 'System Administrator';
-            var optionValue = 'sysadmin';
+        var jobVacancy = ['- Pilih Lowongan Pekerjaan -', 'System Administrasi', 'Back End Developer', 'Front End Developer', 'Mobile Developer'];
+        var position = ['- Pilih Posisi Pekerjaan -', 'Jakarta', 'Bandung', 'Sukabumi', 'Bogor', 'Bekasi'];
+        
+        var optionElement
+        jobVacancy.forEach(opt => {
+            optionElement = $('<option>');
+            optionElement.val(opt);
+            optionElement.text(opt);
+            $('#job').append(optionElement);
+        });
+        position.forEach(opt => {
+            optionElement = $('<option>');
+            optionElement.val(opt);
+            optionElement.text(opt);
+            $('#position').append(optionElement);
+        });
+        $('#myForm').submit(function(e) {
+            e.preventDefault();
             
-            // Buat elemen <option> baru
-            var newOption = $('<option>');
-            newOption.val(optionValue);
-            newOption.text(optionText);
-            
-            // Tambahkan opsi baru ke dalam select
-            $('#job').append(newOption);
+            // Menggunakan serializeArray()
+            var formData = $(this).serializeArray();
+            console.log(formData);
+
+            $('#afterSubmit')
+                .html(`
+                <h1 class=\"text-success\">Terima Kasih telah mengisi Formulir ini. </h1>
+                Nama Lengkap : ${formData[0]['value']}<br>
+                Email : ${formData[1]['value']}<br>
+                Nomor Telepon : ${formData[2]['value']}<br>
+                Lowongan Kerja : ${formData[3]['value']}<br>
+                Posisi : ${formData[4]['value']}<br>
+                `);
         });
     });
 </script>
