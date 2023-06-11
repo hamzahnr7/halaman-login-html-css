@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input class="form-control form-control-sm" type="email" name="email" id="email" placeholder="Masukkan Alamat Email">
+                        <input class="form-control form-control-sm" type="email" onchange="checkEmail(this.value)" name="email" id="email" placeholder="Masukkan Alamat Email">
                     </div>
                     <div class="mb-3">
                         <label for="phonenumber" class="form-label">Phone Number</label>
@@ -49,6 +49,45 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 <script>
+var Data = [];
+    function validateForm(data)
+    {
+        var stat = true;
+        var text = '';
+        data.forEach((form, idx) => {
+            if (form['value'] === '') {
+                switch (idx) {
+                    case 0:
+                        text+='Nama Lengkap';
+                        break;
+                    case 1:
+                        text+='Alamat Lengkap';
+                        break;
+                    case 2:
+                        text+='Nomor Telepon';
+                        break;
+                    case 3:
+                        text+='Lowongan Kerja';
+                        break;
+                    case 4:
+                        if (text == '') {
+                            text+='Posisi';
+                        } else text+='dan Posisi';
+                        break;
+                
+                    default:
+                        break;
+                }
+                stat = false;
+                if (idx != 4) text+=', ';
+            };
+        });
+        if (!stat) {
+            console.log(text);
+            alert(`${text} Harus Diisi!`);
+        }
+        return stat;
+    }
     
     $(document).ready(function (param) 
     {
@@ -57,15 +96,23 @@
         var position = ['- Pilih Posisi Pekerjaan -', 'Jakarta', 'Bandung', 'Sukabumi', 'Bogor', 'Bekasi'];
         
         var optionElement
-        jobVacancy.forEach(opt => {
+        jobVacancy.forEach((opt, idx) => {
             optionElement = $('<option>');
-            optionElement.val(opt);
+            if (idx != 0) {
+                optionElement.val(opt);
+            }else {
+                optionElement.val('');
+            }
             optionElement.text(opt);
             $('#job').append(optionElement);
         });
-        position.forEach(opt => {
+        position.forEach((opt, idx) => {
             optionElement = $('<option>');
-            optionElement.val(opt);
+            if (idx != 0) {
+                optionElement.val(opt);
+            }else {
+                optionElement.val('');
+            }
             optionElement.text(opt);
             $('#position').append(optionElement);
         });
@@ -73,17 +120,20 @@
             e.preventDefault();
             
             var formData = $(this).serializeArray();
-            console.log(formData);
-
-            $('#afterSubmit')
-                .html(`
-                <h1 class=\"text-success\">Terima Kasih telah mengisi Formulir ini. </h1>
-                Nama Lengkap : ${formData[0]['value']}<br>
-                Email : ${formData[1]['value']}<br>
-                Nomor Telepon : ${formData[2]['value']}<br>
-                Lowongan Kerja : ${formData[3]['value']}<br>
-                Posisi : ${formData[4]['value']}<br>
-                `);
+            // console.log(formData);
+            if (validateForm(formData)) {
+                Data.push(formData);
+                $('#afterSubmit')
+                    .html(`
+                    <h1 class=\"text-success\">Terima Kasih telah mengisi Formulir ini. </h1>
+                    Nama Lengkap : ${formData[0]['value']}<br>
+                    Email : ${formData[1]['value']}<br>
+                    Nomor Telepon : ${formData[2]['value']}<br>
+                    Lowongan Kerja : ${formData[3]['value']}<br>
+                    Posisi : ${formData[4]['value']}<br>
+                    `);
+                console.log(Data);
+            }
         });
     });
 </script>
