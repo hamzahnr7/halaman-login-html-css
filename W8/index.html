@@ -50,8 +50,22 @@
 <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 <script>
 var Data = [];
-    function validateForm(data)
-    {
+
+    function checkEmail(email) {
+        let tmp = true;
+        if (Data) {
+            Data.forEach((val, idx) => {
+                if (email == val[1]['value']) {
+                    tmp = false;
+                }
+                // console.log(email);
+            })
+            alert('Email telah digunakan');
+        }
+        return tmp;
+    }
+
+    function validateForm(data) {
         var stat = true;
         var text = '';
         data.forEach((form, idx) => {
@@ -61,7 +75,7 @@ var Data = [];
                         text+='Nama Lengkap';
                         break;
                     case 1:
-                        text+='Alamat Lengkap';
+                        text+='Alamat Email';
                         break;
                     case 2:
                         text+='Nomor Telepon';
@@ -86,6 +100,9 @@ var Data = [];
             console.log(text);
             alert(`${text} Harus Diisi!`);
         }
+        if (!checkEmail(data[1]['value'])) {
+            stat = false
+        };
         return stat;
     }
     
