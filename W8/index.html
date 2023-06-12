@@ -74,11 +74,11 @@ var jobQuota = [0, 3, 4, 4, 5];
         let val = $('#job').val();
 
         if (jobQuota[val] == 0) {
-            $('#jobQuota').text('Kuota Pelamar sudah penuh');
+            $('#jobQuota').text(`Mohon maaf, rekrutasi untuk ${jobVacancy[val]}sudah penuh.`);
             $('#submitBtn').addClass('disabled');
         }
         else if (jobQuota[val] <= 2) {
-            $('#jobQuota').text(`Kuota Pelamar tersisa ${jobQuota[val]} orang`);
+            $('#jobQuota').text(`Kuota tersisa untuk ${jobVacancy[val]} hanya ${jobQuota[val]} pendaftar.`);
         }
         else {
             $('#submitBtn').removeClass('disabled');
