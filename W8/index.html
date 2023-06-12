@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input class="form-control form-control-sm" type="email" onchange="checkEmail(this.value)" name="email" id="email" placeholder="Masukkan Alamat Email">
+                        <input class="form-control form-control-sm" type="email" name="email" id="email" placeholder="Masukkan Alamat Email">
                     </div>
                     <div class="mb-3">
                         <label for="phonenumber" class="form-label">Phone Number</label>
@@ -31,14 +31,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="job" class="form-label">Job Vacancy</label>
-                        <select class="form-select form-select-sm" name="job" id="job"></select>
+                        <select class="form-select form-select-sm" name="job" id="job" onchange="checkQuota()"></select>
+                        <span id="jobQuota"></span>
                     </div>
                     <div class="mb-3">
                         <label for="potition" class="form-label">Position</label>
                         <select class="form-select form-select-sm" name="position" id="position"></select>
                     </div>
                     <div class="d-grid gap-1">
-                        <button type="submit" class="btn btn- btn-success">Submit</button>
+                        <button type="submit" class="btn btn- btn-success" id="submitBtn">Submit</button>
                     </div>
                 </form>
             </div>
@@ -50,6 +51,10 @@
 <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 <script>
 var Data = [];
+var jobVacancy = ['- Pilih Lowongan Pekerjaan -', 'System Administrasi', 'Back End Developer', 'Front End Developer', 'Mobile Developer'];
+var jobVacancyVal = ['', 1, 2, 3, 4];
+var position = ['- Pilih Posisi Pekerjaan -', 'Jakarta', 'Bandung', 'Sukabumi', 'Bogor', 'Bekasi'];
+var jobQuota = [0, 3, 4, 4, 5];
 
     function checkEmail(email) {
         let tmp = true;
@@ -60,9 +65,26 @@ var Data = [];
                 }
                 // console.log(email);
             })
-            alert('Email telah digunakan');
+            if (!tmp) {alert('Email telah digunakan')};
         }
         return tmp;
+    }
+
+    function checkQuota() {
+        let val = $('#job').val();
+
+        if (jobQuota[val] == 0) {
+            $('#jobQuota').text('Kuota Pelamar sudah penuh');
+            $('#submitBtn').addClass('disabled');
+        }
+        else if (jobQuota[val] <= 2) {
+            $('#jobQuota').text(`Kuota Pelamar tersisa ${jobQuota[val]} orang`);
+        }
+        else {
+            $('#submitBtn').removeClass('disabled');
+            $('#jobQuota').text('');
+        }
+        
     }
 
     function validateForm(data) {
@@ -109,17 +131,11 @@ var Data = [];
     $(document).ready(function (param) 
     {
         $('title').text('Form Lowongan Pekerjaan');
-        var jobVacancy = ['- Pilih Lowongan Pekerjaan -', 'System Administrasi', 'Back End Developer', 'Front End Developer', 'Mobile Developer'];
-        var position = ['- Pilih Posisi Pekerjaan -', 'Jakarta', 'Bandung', 'Sukabumi', 'Bogor', 'Bekasi'];
         
         var optionElement
         jobVacancy.forEach((opt, idx) => {
             optionElement = $('<option>');
-            if (idx != 0) {
-                optionElement.val(opt);
-            }else {
-                optionElement.val('');
-            }
+            optionElement.val(jobVacancyVal[idx]);
             optionElement.text(opt);
             $('#job').append(optionElement);
         });
@@ -140,15 +156,20 @@ var Data = [];
             // console.log(formData);
             if (validateForm(formData)) {
                 Data.push(formData);
+                jobQuota[formData[3]['value']]-=1;
+                // console.log(jobQuota[formData[3]['value']]);
                 $('#afterSubmit')
                     .html(`
                     <h1 class=\"text-success\">Terima Kasih telah mengisi Formulir ini. </h1>
                     Nama Lengkap : ${formData[0]['value']}<br>
                     Email : ${formData[1]['value']}<br>
                     Nomor Telepon : ${formData[2]['value']}<br>
-                    Lowongan Kerja : ${formData[3]['value']}<br>
-                    Posisi : ${formData[4]['value']}<br>
+                    Lowongan Kerja : ${jobVacancy[formData[3]['value']]}<br>
+                    Posisi : ${formData[4]['value']}<br><br>
+                    <h3>Jumlah Pelamar ${Data.length}</h3>
                     `);
+                $('#myForm')[0].reset();
+                $('#jobQuota').text('');
                 console.log(Data);
             }
         });
